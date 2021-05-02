@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -25,5 +26,14 @@ class Messages extends Model
 
     public function chat(){
         return $this->belongsTo(Chats::class);
+    }
+
+    public function createMessage($request){
+        return (new static)::create([
+            'chat_id' => $request->chat_id,
+            'user_id' => $request->user_id,
+            'message' => $request->message,
+            'send_date' => Carbon::now()
+        ]);
     }
 }

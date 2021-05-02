@@ -95,9 +95,18 @@
                         remember: this.form.remember ? 'on' : ''
                     }))
                     .post(this.route('login'), {
-                        onFinish: () => this.form.reset('password'),
+                        onFinish: () => {
+                            this.form.reset('password')
+                        }
                     })
-            }
-        }
+            },
+        },
+        created() {
+            var pusher = new Pusher('2b89e7ce6ad697844999', {
+                    cluster: 'us2'
+                });
+
+            var channel = pusher.subscribe('anstagram-channel');
+        },
     }
 </script>
