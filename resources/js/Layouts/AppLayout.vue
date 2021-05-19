@@ -59,6 +59,7 @@
                                     </svg>
                                 </inertia-link>
                             </div>
+                            <notifications></notifications>
                             <div class="ml-3 relative">
                                 <!-- Teams Dropdown -->
                                 <jet-dropdown align="right" width="60" v-if="$page.props.jetstream.hasTeamFeatures">
@@ -259,6 +260,7 @@
     import JetBanner from '@/Jetstream/Banner'
     import JetDropdown from '@/Jetstream/Dropdown'
     import Dropdown from '@/Components/Dropdown'
+    import Notifications from '@/Components/Notifications'
     import JetDropdownLink from '@/Jetstream/DropdownLink'
     import JetNavLink from '@/Jetstream/NavLink'
     import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink'
@@ -272,7 +274,8 @@
             JetNavLink,
             JetResponsiveNavLink,
             AuthenticationCardLogo,
-            Dropdown
+            Dropdown,
+            Notifications
         },
 
         data() {

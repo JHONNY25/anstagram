@@ -46,11 +46,18 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/chats', [ChatController::class,'index'])->name('chats');
     Route::get('/user/chat/{nick_name}', [SearchController::class,'usersIFollow'])->name('usersIFollow');
     Route::get('/user-chat/{id}', [ChatController::class,'getChat'])->name('get-chat');
-    Route::get('/new-chat/{id}', [ChatController::class,'getNewChat'])->name('get-new-chat');
+    Route::get('/new-chat/{id}', [ChatController::class,'createChatIfNotExists'])->name('get-new-chat');
     Route::post('/chat/send-message', [ChatController::class,'sendMessage'])->name('send-message');
-
+    Route::post('/send-file', [ChatController::class,'sendFile'])->name('send-file');
+    Route::get('/direct-message/{id}', [ChatController::class,'directMessage'])->name('direct-message');
+    
     //offline and online
     Route::post('/online/{id}', OnlineController::class)->name('online');
     Route::post('/offline/{id}', OfflineController::class)->name('offline');
-
+    
+    //follow
+    Route::post('/follow-user', [ProfileController::class,'followUser'])->name('follow-user');
+    Route::post('/unfollow-user', [ProfileController::class,'unFollow'])->name('unfollow-user');
+    Route::get('/exists-follow/{user_id}', [ProfileController::class,'existsFollow'])->name('exists-follow');
+    Route::post('/markAsRead', [ProfileController::class,'markAsRead'])->name('markAsRead');
 });

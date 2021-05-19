@@ -70,4 +70,8 @@ class User extends Authenticatable
     public function followers(){
         return $this->hasMany(Followers::class);
     }
+
+    public function receivesBroadcastNotificationsOn(){
+        return 'App.Models.User.'.$this->id;
+    }
 }
